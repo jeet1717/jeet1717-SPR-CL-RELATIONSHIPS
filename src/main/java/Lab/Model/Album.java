@@ -30,12 +30,16 @@ public class Album {
     /**
      * Review the other model classes to see examples of annotations that link entities.
      */
-    private Artist artist;
+    @ManyToOne(fetch = FetchType.EAGER) //Many albums are creted by one artist
+    @JoinColumn(name = "artist_fk")
+     private Artist artist;
 
     /**
      * Review the other model classes to see examples of annotations that link entities.
      */
-    private List<Song> songs;
+    @OneToMany(fetch = FetchType.EAGER) //One Album have many Songs
+    @JoinColumn(name = "album_fk")
+     private List<Song> songs;
 
     public Album(String title) {
         this.title = title;
